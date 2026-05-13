@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MediRx — Create Account</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --emerald: #0d6e5a;
+    --emerald-light: #12896e;
+    --emerald-pale: #e6f4f1;
+    --gold: #c9a84c;
+    --gold-light: #f0d690;
+    --ink: #0f1f1a;
+    --ink-soft: #3a4f49;
+    --mist: #f5faf8;
+    --border: #d4e8e2;
+    --radius: 16px;
+    --radius-sm: 10px;
+    --font-d: 'Cormorant Garamond', serif;
+    --font-b: 'DM Sans', sans-serif;
+  }
+
+  body { font-family: var(--font-b); background: var(--mist); min-height: 100vh; display: flex; }
+
+  .page { display: grid; grid-template-columns: 1fr 1fr; min-height: 100vh; width: 100%; }
+  @media (max-width: 768px) { .page { grid-template-columns: 1fr; } .brand { display: none; } }
+
+  /* BRAND */
+  .brand {
+    background: linear-gradient(145deg, #0d6e5a 0%, #0a5244 55%, #082e26 100%);
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: center; padding: 60px 50px;
+    position: relative; overflow: hidden;
+  }
+  .brand::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(circle at 25% 65%, rgba(201,168,76,.15) 0%, transparent 55%),
+                radial-gradient(circle at 75% 20%, rgba(255,255,255,.06) 0%, transparent 50%);
+  }
+  .b-pill {
+    background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.22);
+    border-radius: 100px; padding: 5px 18px;
+    color: var(--gold-light); font-size: 11px; letter-spacing: 2.5px;
+    text-transform: uppercase; margin-bottom: 28px; position: relative;
+  }
+  .b-logo {
+    font-family: var(--font-d); font-size: 58px; font-weight: 700;
+    color: #fff; line-height: 1; text-align: center;
+    position: relative; margin-bottom: 14px;
+  }
+  .b-logo span { color: var(--gold-light); }
+  .b-tag {
+    color: rgba(255,255,255,.62); font-size: 15px; text-align: center;
+    line-height: 1.7; position: relative; max-width: 270px; margin-bottom: 40px;
+  }
+
+  .steps { display: flex; flex-direction: column; gap: 0; width: 100%; position: relative; }
+  .step {
+    display: flex; align-items: flex-start; gap: 16px; padding: 0 0 28px 0;
+    position: relative;
+  }
+  .step:not(:last-child)::after {
+    content: ''; position: absolute; left: 18px; top: 38px;
+    width: 2px; bottom: 4px;
+    background: linear-gradient(to bottom, rgba(255,255,255,.25), rgba(255,255,255,.05));
+  }
+  .step-num {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: rgba(255,255,255,.12); border: 1.5px solid rgba(255,255,255,.22);
+    color: var(--gold-light); font-size: 13px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .step-text { color: rgba(255,255,255,.82); font-size: 13px; line-height: 1.5; padding-top: 8px; }
+  .step-text strong { color: #fff; display: block; font-size: 14px; margin-bottom: 2px; }
+
+  /* FORM SIDE */
+  .form-side { display: flex; align-items: center; justify-content: center; padding: 40px 28px; }
+
+  .card {
+    width: 100%; max-width: 460px; background: #fff;
+    border-radius: 24px; padding: 40px 38px;
+    box-shadow: 0 8px 48px rgba(13,110,90,.11);
+    border: 1px solid var(--border);
+    animation: slideUp .4s ease;
+  }
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media (max-width: 480px) { .card { padding: 30px 20px; } }
+
+  .eyebrow {
+    display: flex; align-items: center; gap: 8px;
+    color: var(--emerald); font-size: 11px; letter-spacing: 2.5px;
+    text-transform: uppercase; font-weight: 600; margin-bottom: 10px;
+  }
+  .eyebrow::before { content: ''; width: 22px; height: 2px; background: var(--gold); border-radius: 2px; }
+  .card-title {
+    font-family: var(--font-d); font-size: 34px; font-weight: 700;
+    color: var(--ink); line-height: 1.12; margin-bottom: 6px;
+  }
+  .card-sub { color: var(--ink-soft); font-size: 14px; line-height: 1.6; margin-bottom: 24px; }
+
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 480px) { .row { grid-template-columns: 1fr; } }
+
+  .field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+  .field label {
+    font-size: 11px; font-weight: 600; color: var(--ink-soft);
+    letter-spacing: .8px; text-transform: uppercase;
+  }
+  .field input {
+    padding: 12px 15px; border-radius: var(--radius-sm);
+    border: 1.5px solid var(--border); font-family: var(--font-b);
+    font-size: 14px; background: var(--mist); color: var(--ink);
+    transition: all .2s; outline: none;
+  }
+  .field input:focus {
+    border-color: var(--emerald); background: #fff;
+    box-shadow: 0 0 0 3px rgba(13,110,90,.09);
+  }
+  .field input::placeholder { color: #b0c4be; }
+  .field input.invalid { border-color: #e74c3c; }
+
+  /* Password strength */
+  .strength-bar { height: 4px; border-radius: 2px; background: var(--border); margin-top: 6px; overflow: hidden; }
+  .strength-fill { height: 100%; border-radius: 2px; transition: all .4s ease; width: 0; }
+
+  .btn {
+    width: 100%; padding: 14px; margin-top: 6px;
+    background: linear-gradient(135deg, #0d6e5a, #12896e);
+    color: #fff; border: none; border-radius: var(--radius-sm);
+    font-family: var(--font-b); font-size: 15px; font-weight: 600;
+    cursor: pointer; transition: all .25s; letter-spacing: .3px;
+    position: relative; overflow: hidden;
+  }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(13,110,90,.32); }
+  .btn:active { transform: none; }
+  .btn:disabled { opacity: .65; cursor: not-allowed; transform: none; }
+  .btn.loading::after {
+    content: ''; position: absolute; right: 18px; top: 50%;
+    transform: translateY(-50%); width: 16px; height: 16px;
+    border: 2px solid rgba(255,255,255,.4); border-top-color: #fff;
+    border-radius: 50%; animation: spin .7s linear infinite;
+  }
+  @keyframes spin { to { transform: translateY(-50%) rotate(360deg); } }
+
+  .switch-link { text-align: center; margin-top: 20px; font-size: 14px; color: var(--ink-soft); }
+  .switch-link a {
+    color: var(--emerald); font-weight: 600; text-decoration: none;
+    border-bottom: 1.5px solid transparent; transition: border .2s;
+  }
+  .switch-link a:hover { border-color: var(--emerald); }
+
+  .msg {
+    padding: 11px 15px; border-radius: var(--radius-sm); font-size: 13px;
+    margin-bottom: 14px; display: flex; align-items: center; gap: 8px;
+    animation: fadeIn .3s ease;
+  }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  .msg.error { background: #fff0f0; color: #c0392b; border: 1px solid #ffd5d5; }
+  .msg.success { background: #edfaf5; color: #0d6e5a; border: 1px solid #b8ead7; }
+  .msg.info { background: #fff8e8; color: #7a5c00; border: 1px solid var(--gold-light); }
+
+  .terms {
+    font-size: 12px; color: var(--ink-soft); text-align: center;
+    margin-top: 12px; line-height: 1.5;
+  }
+  .terms a { color: var(--emerald); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <!-- BRAND -->
+  <div class="brand">
+    <div class="b-pill">🏥 Join MediRx Today</div>
+    <div class="b-logo">Medi<span>Rx</span></div>
+    <div class="b-tag">Create your account in 60 seconds and start ordering medicines online.</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-text"><strong>Fill your details</strong>Name, email, phone &amp; password</div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-text"><strong>Verify your account</strong>Quick email confirmation</div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-text"><strong>Start shopping</strong>Browse 500+ certified products</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FORM -->
+  <div class="form-side">
+    <div class="card">
+      <div class="eyebrow">New Account</div>
+      <h1 class="card-title">Create your<br />MediRx account</h1>
+      <p class="card-sub">Join thousands getting healthcare delivered.</p>
+
+      <div id="msg-box"></div>
+
+      <div class="row">
+        <div class="field">
+          <label>First Name</label>
+          <input type="text" id="firstName" placeholder="John" />
+        </div>
+        <div class="field">
+          <label>Last Name</label>
+          <input type="text" id="lastName" placeholder="Doe" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Email Address</label>
+        <input type="email" id="email" placeholder="john@example.com" />
+      </div>
+
+      <div class="field">
+        <label>Phone Number</label>
+        <input type="tel" id="phone" placeholder="+91 98765 43210" />
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label>Password</label>
+          <input type="password" id="password" placeholder="Min. 6 chars" oninput="checkStrength()" />
+          <div class="strength-bar"><div class="strength-fill" id="strength-fill"></div></div>
+        </div>
+        <div class="field">
+          <label>Confirm Password</label>
+          <input type="password" id="confirm" placeholder="Repeat password" />
+        </div>
+      </div>
+
+      <button class="btn" id="reg-btn" onclick="register()">Create Account →</button>
+
+      <p class="terms">By registering you agree to our <a href="#">Terms of Service</a> &amp; <a href="#">Privacy Policy</a></p>
+      <div class="switch-link">Already have an account? <a href="login.html">Sign in</a></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ── CONFIG ─────────────────────────────────────────────────────────────────
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwFUlZPz6qlj1zGRkTbn1I6-XAtqYhHe37xkbAa3wq71SaAdmQoQKhxSA129J6UfDoRGw/exec";
+ 
+
+ 
+  // Redirect if already logged in
+  if (localStorage.getItem("medirx_user")) window.location.href = "home.html";
+
+  // ── PASSWORD STRENGTH ──────────────────────────────────────────────────────
+  function checkStrength() {
+    const pw = document.getElementById("password").value;
+    const fill = document.getElementById("strength-fill");
+    let score = 0;
+    if (pw.length >= 6) score++;
+    if (pw.length >= 10) score++;
+    if (/[A-Z]/.test(pw) && /[0-9]/.test(pw)) score++;
+    if (/[^A-Za-z0-9]/.test(pw)) score++;
+    const colors = ["#e74c3c", "#e67e22", "#f1c40f", "#2ecc71"];
+    const widths = ["25%", "50%", "75%", "100%"];
+    fill.style.width = pw.length ? widths[score - 1] || "15%" : "0";
+    fill.style.background = pw.length ? colors[score - 1] || "#e74c3c" : "";
+  }
+
+  // ── HELPERS ────────────────────────────────────────────────────────────────
+  function showMsg(text, type = "error") {
+    document.getElementById("msg-box").innerHTML =
+      `<div class="msg ${type}">${type==="error"?"⚠️":"✅"} ${text}</div>`;
+  }
+
+  function setLoading(on) {
+    const btn = document.getElementById("reg-btn");
+    btn.disabled = on;
+    btn.textContent = on ? "Creating Account…" : "Create Account →";
+    if (on) btn.classList.add("loading"); else btn.classList.remove("loading");
+  }
+
+  function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+  // ── REGISTER ───────────────────────────────────────────────────────────────
+  async function register() {
+    const firstName = document.getElementById("firstName").value.trim();
+    const lastName  = document.getElementById("lastName").value.trim();
+    const email     = document.getElementById("email").value.trim();
+    const phone     = document.getElementById("phone").value.trim();
+    const password  = document.getElementById("password").value;
+    const confirm   = document.getElementById("confirm").value;
+
+    if (!firstName || !lastName || !email || !phone || !password)
+      return showMsg("Please fill in all fields.");
+    if (!/\S+@\S+\.\S+/.test(email))
+      return showMsg("Please enter a valid email address.");
+    if (password !== confirm)
+      return showMsg("Passwords do not match.");
+    if (password.length < 6)
+      return showMsg("Password must be at least 6 characters.");
+
+    setLoading(true);
+
+ 
+
+    try {
+      const res = await fetch(SCRIPT_URL, {
+        method: "POST",
+        headers: { "Content-Type": "text/plain" },
+        body: JSON.stringify({ action: "register", firstName, lastName, email, phone, password })
+      });
+      const data = await res.json();
+      if (data.success) {
+        showMsg("Account created! Redirecting to login…", "success");
+        setTimeout(() => window.location.href = "login.html", 1800);
+      } else {
+        showMsg(data.error || "Registration failed. Try again.");
+        setLoading(false);
+      }
+    } catch {
+      showMsg("Connection failed. Check your Script URL.");
+      setLoading(false);
+    }
+  }
+
+  // Enter key
+  document.addEventListener("keydown", e => { if (e.key === "Enter") register(); });
+</script>
+</body>
+</html>
