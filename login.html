@@ -8,7 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
 <style>
   /* ── CONFIG: paste your Google Apps Script URL here ── */
-  /* const SCRIPT_URL = "https://script.google.com/macros/s/YOUR_ID/exec"; */
+  /* const SCRIPT_URL = ""https://script.google.com/macros/s/AKfycbwFUlZPz6qlj1zGRkTbn1I6-XAtqYhHe37xkbAa3wq71SaAdmQoQKhxSA129J6UfDoRGw/exec"; */
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -177,7 +177,7 @@
   <!-- BRAND -->
   <div class="brand">
     <div class="b-pill">🏥 Healthcare Platform</div>
-    <div class="b-logo">Medi<span>Rx</span></div>
+    <div class="b-logo">Online Medical<span> Shop</span></div>
     <div class="b-tag">Your trusted online pharmacy delivering wellness directly to your door.</div>
     <div class="b-feats">
       <div class="b-feat"><span class="b-feat-icon">✅</span><div class="b-feat-text"><strong>Verified Medicines</strong>All products are certified &amp; authentic</div></div>
@@ -206,8 +206,7 @@
 
       <button class="btn" id="login-btn" onclick="login()">Sign In →</button>
 
-      <div class="divider">or</div>
-      <button class="demo-btn" onclick="demoLogin()">⚡ Try Demo (no account needed)</button>
+  
 
       <div class="switch-link">Don't have an account? <a href="register.html">Register</a></div>
     </div>
@@ -233,21 +232,12 @@
     if (on) btn.classList.add("loading"); else btn.classList.remove("loading");
   }
 
-  // Show info if demo mode
-  if (IS_DEMO) {
-    document.getElementById("msg-box").innerHTML =
-      `<div class="msg info">⚡ Demo mode — use <strong>any email/password</strong> to sign in</div>`;
-  }
+ 
 
   // Enter key support
   document.addEventListener("keydown", e => { if (e.key === "Enter") login(); });
 
-  // ── DEMO LOGIN ─────────────────────────────────────────────────────────────
-  function demoLogin() {
-    const user = { name: "Demo User", email: "demo@medirx.com" };
-    localStorage.setItem("medirx_user", JSON.stringify(user));
-    window.location.href = "home.html";
-  }
+
 
   // ── LOGIN ──────────────────────────────────────────────────────────────────
   async function login() {
@@ -259,13 +249,7 @@
 
     setLoading(true);
 
-    if (IS_DEMO) {
-      await sleep(800);
-      const user = { name: email.split("@")[0], email };
-      localStorage.setItem("medirx_user", JSON.stringify(user));
-      window.location.href = "home.html";
-      return;
-    }
+  
 
     try {
       const res = await fetch(SCRIPT_URL, {

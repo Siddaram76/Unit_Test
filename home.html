@@ -302,7 +302,7 @@
 
 <!-- NAVBAR -->
 <nav class="navbar">
-  <div class="nav-logo">Medi<span>Rx</span></div>
+  <div class="nav-logo">Online Medical<span>Shop</span></div>
   <div class="nav-right">
     <div class="nav-user">
       <div class="nav-avatar" id="nav-avatar">U</div>
@@ -453,7 +453,7 @@
             ${lowStock?"⚠️":"✅"} ${p.stock} in stock
           </div>
           <div class="card-footer">
-            <div class="card-price"><sup>$</sup>${p.price.toFixed(2)}</div>
+            <div class="card-price"><sup>₹</sup>${p.price.toFixed(2)}</div>
             <button class="add-btn${inCart?" added":""}" onclick="addToCart(${p.id})" title="Add to cart">
               ${inCart?"✓":"+"}
             </button>
