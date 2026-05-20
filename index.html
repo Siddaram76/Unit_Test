@@ -508,12 +508,14 @@
         </div>
       </div>
 
-      <!-- Step 2: Roll number -->
+     <!-- Step 2: Roll number -->
       <div id="rollStep" class="roll-step">
         <div id="selectedTag"></div>
         <p class="step-label-text">Enter your roll number</p>
         <div class="input-row">
-          <input type="text" id="rollInput" placeholder="e.g. 2024001"
+          <input type="text" id="rollInput" placeholder="e.g. FOR Science 2S01 and commerce 2C01"
+                 style="text-transform:uppercase"
+                 oninput="this.value=this.value.toUpperCase()"
                  onkeydown="if(event.key==='Enter') searchStudent()"/>
           <button class="btn-search btn-sci" id="searchBtn" onclick="searchStudent()">Search</button>
         </div>
@@ -521,7 +523,6 @@
 
     </div>
   </div>
-
   <!-- Results -->
   <div id="studentInfo"></div>
   <div id="resultsContainer"></div>
