@@ -1,336 +1,817 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Online Medical Shop — Create Account</title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Subject Result — Millennium Composite PU College</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  :root {
-    --emerald: #0d6e5a;
-    --emerald-light: #12896e;
-    --emerald-pale: #e6f4f1;
-    --gold: #c9a84c;
-    --gold-light: #f0d690;
-    --ink: #0f1f1a;
-    --ink-soft: #3a4f49;
-    --mist: #f5faf8;
-    --border: #d4e8e2;
-    --radius: 16px;
-    --radius-sm: 10px;
-    --font-d: 'Cormorant Garamond', serif;
-    --font-b: 'DM Sans', sans-serif;
-  }
+    :root {
+      --gold:        #f5c800;
+      --gold-dark:   #d4a800;
+      --blue-hero:   #3b6fd4;
+      --pink-hero:   #e8a0bf;
+      --page-bg:     #d6e8f7;
+      --white:       #ffffff;
+      --text-dark:   #1a1a2e;
+      --text-mid:    #3d3d5c;
+      --text-light:  #7a8aaa;
+      --success:     #1e8a5e;
+      --success-bg:  #edf7f2;
+      --fail:        #b83232;
+      --fail-bg:     #fdf0f0;
+      --science:     #1d6fb8;
+      --science-bg:  #e8f0fb;
+      --commerce:    #7c3aed;
+      --commerce-bg: #f3effe;
+      --notif-bg:    #fffbe6;
+      --notif-border:#f5c800;
+      --notif-title: #92400e;
+      --notif-text:  #78350f;
+      --border:      rgba(0,0,0,0.08);
+      --shadow-sm:   0 2px 12px rgba(0,0,0,0.08);
+      --shadow-md:   0 8px 32px rgba(0,0,0,0.12);
+      --shadow-lg:   0 16px 48px rgba(0,0,0,0.16);
+      --radius:      16px;
+      --radius-sm:   10px;
+    }
 
-  body { font-family: var(--font-b); background: var(--mist); min-height: 100vh; display: flex; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--page-bg);
+      color: var(--text-dark);
+      min-height: 100vh;
+    }
 
-  .page { display: grid; grid-template-columns: 1fr 1fr; min-height: 100vh; width: 100%; }
-  @media (max-width: 768px) { .page { grid-template-columns: 1fr; } .brand { display: none; } }
+    /* ════════════════════════════
+       HERO
+    ════════════════════════════ */
+    .hero {
+      background: linear-gradient(135deg, #e8a0bf 0%, #b8c8f0 35%, #3b6fd4 100%);
+      padding: 40px 20px 50px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 30% 50%, rgba(255,255,255,0.12) 0%, transparent 60%),
+                  radial-gradient(ellipse at 80% 20%, rgba(255,255,255,0.08) 0%, transparent 50%);
+      pointer-events: none;
+    }
 
-  /* BRAND */
-  .brand {
-    background: linear-gradient(145deg, #0d6e5a 0%, #0a5244 55%, #082e26 100%);
-    display: flex; flex-direction: column; align-items: center;
-    justify-content: center; padding: 60px 50px;
-    position: relative; overflow: hidden;
-  }
-  .brand::before {
-    content: ''; position: absolute; inset: 0;
-    background: radial-gradient(circle at 25% 65%, rgba(201,168,76,.15) 0%, transparent 55%),
-                radial-gradient(circle at 75% 20%, rgba(255,255,255,.06) 0%, transparent 50%);
-  }
-  .b-pill {
-    background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.22);
-    border-radius: 100px; padding: 5px 18px;
-    color: var(--gold-light); font-size: 11px; letter-spacing: 2.5px;
-    text-transform: uppercase; margin-bottom: 28px; position: relative;
-  }
-  .b-logo {
-    font-family: var(--font-d); font-size: 58px; font-weight: 700;
-    color: #fff; line-height: 1; text-align: center;
-    position: relative; margin-bottom: 14px;
-  }
-  .b-logo span { color: var(--gold-light); }
-  .b-tag {
-    color: rgba(255,255,255,.62); font-size: 15px; text-align: center;
-    line-height: 1.7; position: relative; max-width: 270px; margin-bottom: 40px;
-  }
+    /* Logo circle */
+    .logo-wrap {
+      position: relative; display: inline-block; margin-bottom: 16px;
+    }
+    .logo-ring {
+      width: 120px; height: 120px; border-radius: 50%;
+      background: var(--white);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 0 0 4px rgba(255,255,255,0.3), 0 8px 32px rgba(0,0,0,0.2);
+      overflow: hidden;
+      margin: 0 auto;
+    }
+    .logo-ring img {
+      width: 108px; height: 108px; border-radius: 50%; object-fit: cover;
+    }
+    /* Fallback if no logo image */
+    .logo-fallback {
+      width: 108px; height: 108px; border-radius: 50%;
+      background: linear-gradient(135deg, #1e3a8a, #3b6fd4);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      color: white; font-size: 28px; font-weight: 800; letter-spacing: 1px;
+    }
+    .logo-fallback span { font-size: 10px; font-weight: 500; letter-spacing: 0.05em; margin-top: 2px; opacity: 0.8; }
 
-  .steps { display: flex; flex-direction: column; gap: 0; width: 100%; position: relative; }
-  .step {
-    display: flex; align-items: flex-start; gap: 16px; padding: 0 0 28px 0;
-    position: relative;
-  }
-  .step:not(:last-child)::after {
-    content: ''; position: absolute; left: 18px; top: 38px;
-    width: 2px; bottom: 4px;
-    background: linear-gradient(to bottom, rgba(255,255,255,.25), rgba(255,255,255,.05));
-  }
-  .step-num {
-    width: 36px; height: 36px; border-radius: 50%;
-    background: rgba(255,255,255,.12); border: 1.5px solid rgba(255,255,255,.22);
-    color: var(--gold-light); font-size: 13px; font-weight: 700;
-    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-  }
-  .step-text { color: rgba(255,255,255,.82); font-size: 13px; line-height: 1.5; padding-top: 8px; }
-  .step-text strong { color: #fff; display: block; font-size: 14px; margin-bottom: 2px; }
+    .hero-org {
+      font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.85);
+      letter-spacing: 0.04em; margin-bottom: 6px;
+    }
+    .hero-name {
+      font-size: clamp(18px, 3.5vw, 26px); font-weight: 800;
+      color: var(--white); letter-spacing: 0.03em; text-transform: uppercase;
+      line-height: 1.2; margin-bottom: 10px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .hero-location {
+      font-size: 13px; color: rgba(255,255,255,0.8); margin-bottom: 24px;
+    }
 
-  /* FORM SIDE */
-  .form-side { display: flex; align-items: center; justify-content: center; padding: 40px 28px; }
+    /* Gold banner button */
+    .hero-banner-btn {
+      display: block; width: 100%; max-width: 700px; margin: 0 auto;
+      background: linear-gradient(135deg, var(--gold) 0%, #ffd700 50%, var(--gold) 100%);
+      background-size: 200%;
+      color: #5a3800; font-family: 'Poppins', sans-serif;
+      font-size: 15px; font-weight: 700; letter-spacing: 0.04em;
+      border: none; border-radius: 10px; padding: 16px 24px;
+      cursor: default;
+      box-shadow: 0 4px 20px rgba(245,200,0,0.4);
+      text-align: center;
+      animation: gold-shine 3s linear infinite;
+    }
+    @keyframes gold-shine {
+      0%   { background-position: 200%; }
+      100% { background-position: -200%; }
+    }
 
-  .card {
-    width: 100%; max-width: 460px; background: #fff;
-    border-radius: 24px; padding: 40px 38px;
-    box-shadow: 0 8px 48px rgba(13,110,90,.11);
-    border: 1px solid var(--border);
-    animation: slideUp .4s ease;
-  }
-  @keyframes slideUp {
-    from { opacity: 0; transform: translateY(22px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  @media (max-width: 480px) { .card { padding: 30px 20px; } }
+    /* ════════════════════════════
+       PAGE BODY
+    ════════════════════════════ */
+    .page-body {
+      max-width: 780px; margin: 0 auto; padding: 28px 16px 60px;
+    }
 
-  .eyebrow {
-    display: flex; align-items: center; gap: 8px;
-    color: var(--emerald); font-size: 11px; letter-spacing: 2.5px;
-    text-transform: uppercase; font-weight: 600; margin-bottom: 10px;
-  }
-  .eyebrow::before { content: ''; width: 22px; height: 2px; background: var(--gold); border-radius: 2px; }
-  .card-title {
-    font-family: var(--font-d); font-size: 34px; font-weight: 700;
-    color: var(--ink); line-height: 1.12; margin-bottom: 6px;
-  }
-  .card-sub { color: var(--ink-soft); font-size: 14px; line-height: 1.6; margin-bottom: 24px; }
+    /* ── Notifications ── */
+    .notif-card {
+      background: var(--notif-bg);
+      border-left: 4px solid var(--notif-border);
+      border-radius: var(--radius-sm);
+      padding: 16px 20px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+    .notif-title {
+      font-size: 14px; font-weight: 700; color: var(--notif-title);
+      margin-bottom: 8px;
+    }
+    .notif-list { list-style: disc; padding-left: 18px; }
+    .notif-list li {
+      font-size: 13px; color: var(--notif-text); margin-bottom: 4px; font-weight: 500;
+    }
 
-  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-  @media (max-width: 480px) { .row { grid-template-columns: 1fr; } }
+    /* ── Section heading ── */
+    .section-heading {
+      text-align: center; font-size: 20px; font-weight: 700;
+      color: var(--text-dark); margin-bottom: 20px;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
 
-  .field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
-  .field label {
-    font-size: 11px; font-weight: 600; color: var(--ink-soft);
-    letter-spacing: .8px; text-transform: uppercase;
-  }
-  .field input {
-    padding: 12px 15px; border-radius: var(--radius-sm);
-    border: 1.5px solid var(--border); font-family: var(--font-b);
-    font-size: 14px; background: var(--mist); color: var(--ink);
-    transition: all .2s; outline: none;
-  }
-  .field input:focus {
-    border-color: var(--emerald); background: #fff;
-    box-shadow: 0 0 0 3px rgba(13,110,90,.09);
-  }
-  .field input::placeholder { color: #b0c4be; }
-  .field input.invalid { border-color: #e74c3c; }
+    /* ── White card wrapper ── */
+    .card {
+      background: var(--white); border-radius: var(--radius);
+      box-shadow: var(--shadow-md); overflow: hidden; margin-bottom: 20px;
+    }
+    .card-body { padding: 20px; }
 
-  /* Password strength */
-  .strength-bar { height: 4px; border-radius: 2px; background: var(--border); margin-top: 6px; overflow: hidden; }
-  .strength-fill { height: 100%; border-radius: 2px; transition: all .4s ease; width: 0; }
+    /* ════════════════════════════
+       STEP SEARCH
+    ════════════════════════════ */
+    .steps {
+      display: flex; align-items: center; gap: 0; margin-bottom: 20px;
+    }
+    .step {
+      display: flex; align-items: center; gap: 7px;
+      font-size: 12px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
+      color: var(--text-light); transition: color 0.25s;
+    }
+    .step.active { color: var(--text-dark); }
+    .step.done   { color: var(--success); }
+    .step-num {
+      width: 24px; height: 24px; border-radius: 50%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 700;
+      background: #eef0f5; color: var(--text-light); transition: all 0.25s;
+    }
+    .step.active .step-num { background: var(--blue-hero); color: var(--white); }
+    .step.done   .step-num { background: var(--success); color: var(--white); }
+    .step-line {
+      flex: 1; height: 2px; background: #e2e6f0; margin: 0 10px; position: relative; overflow: hidden;
+    }
+    .step-line-fill {
+      position: absolute; top: 0; left: 0; height: 100%; width: 0;
+      background: var(--success); transition: width 0.4s ease;
+    }
+    .step-line-fill.done { width: 100%; }
 
-  .btn {
-    width: 100%; padding: 14px; margin-top: 6px;
-    background: linear-gradient(135deg, #0d6e5a, #12896e);
-    color: #fff; border: none; border-radius: var(--radius-sm);
-    font-family: var(--font-b); font-size: 15px; font-weight: 600;
-    cursor: pointer; transition: all .25s; letter-spacing: .3px;
-    position: relative; overflow: hidden;
-  }
-  .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(13,110,90,.32); }
-  .btn:active { transform: none; }
-  .btn:disabled { opacity: .65; cursor: not-allowed; transform: none; }
-  .btn.loading::after {
-    content: ''; position: absolute; right: 18px; top: 50%;
-    transform: translateY(-50%); width: 16px; height: 16px;
-    border: 2px solid rgba(255,255,255,.4); border-top-color: #fff;
-    border-radius: 50%; animation: spin .7s linear infinite;
-  }
-  @keyframes spin { to { transform: translateY(-50%) rotate(360deg); } }
+    .step-label-text {
+      font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--text-light); font-weight: 600; margin-bottom: 12px;
+    }
 
-  .switch-link { text-align: center; margin-top: 20px; font-size: 14px; color: var(--ink-soft); }
-  .switch-link a {
-    color: var(--emerald); font-weight: 600; text-decoration: none;
-    border-bottom: 1.5px solid transparent; transition: border .2s;
-  }
-  .switch-link a:hover { border-color: var(--emerald); }
+    /* Course cards */
+    .course-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .course-btn {
+      border: 2px solid var(--border); border-radius: var(--radius);
+      padding: 20px 16px; background: var(--white);
+      cursor: pointer; text-align: center; transition: all 0.2s;
+    }
+    .course-btn:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+    .course-btn.science:hover,
+    .course-btn.science.selected  { border-color: var(--science); background: #f0f5fd; }
+    .course-btn.commerce:hover,
+    .course-btn.commerce.selected { border-color: var(--commerce); background: #f7f3ff; }
+    .course-btn.selected { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+    .course-btn.selected .check-mark { display: flex; }
 
-  .msg {
-    padding: 11px 15px; border-radius: var(--radius-sm); font-size: 13px;
-    margin-bottom: 14px; display: flex; align-items: center; gap: 8px;
-    animation: fadeIn .3s ease;
-  }
-  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-  .msg.error { background: #fff0f0; color: #c0392b; border: 1px solid #ffd5d5; }
-  .msg.success { background: #edfaf5; color: #0d6e5a; border: 1px solid #b8ead7; }
-  .msg.info { background: #fff8e8; color: #7a5c00; border: 1px solid var(--gold-light); }
+    .check-mark {
+      display: none; position: absolute; top: -8px; right: -8px;
+      width: 22px; height: 22px; border-radius: 50%; border: 2px solid white;
+      font-size: 11px; font-weight: 700; align-items: center; justify-content: center;
+    }
+    .science  .check-mark { background: var(--science);  color: white; }
+    .commerce .check-mark { background: var(--commerce); color: white; }
+    .course-btn { position: relative; }
 
-  .terms {
-    font-size: 12px; color: var(--ink-soft); text-align: center;
-    margin-top: 12px; line-height: 1.5;
-  }
-  .terms a { color: var(--emerald); text-decoration: none; }
-</style>
+    .course-icon { font-size: 32px; display: block; margin-bottom: 10px; }
+    .course-name {
+      font-size: 17px; font-weight: 700; display: block; margin-bottom: 6px;
+    }
+    .science  .course-name { color: var(--science); }
+    .commerce .course-name { color: var(--commerce); }
+    .course-subs { font-size: 11px; color: var(--text-light); line-height: 1.6; }
+
+    /* Roll step */
+    .roll-step { display: none; animation: fadeIn 0.3s ease both; }
+    .roll-step.visible { display: block; }
+
+    .selected-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 5px 14px; border-radius: 20px;
+      font-size: 12px; font-weight: 600; margin-bottom: 14px; cursor: pointer;
+      transition: opacity 0.15s;
+    }
+    .selected-tag:hover { opacity: 0.75; }
+    .tag-sci { background: var(--science-bg); color: var(--science); }
+    .tag-com { background: var(--commerce-bg); color: var(--commerce); }
+
+    .input-row { display: flex; gap: 10px; }
+    .input-row input {
+      flex: 1; border: 1.5px solid #dde2ec; border-radius: var(--radius-sm);
+      padding: 12px 16px; font-family: 'Poppins', sans-serif; font-size: 14px;
+      color: var(--text-dark); outline: none; background: #f8faff;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .input-row input:focus {
+      border-color: var(--blue-hero); box-shadow: 0 0 0 3px rgba(59,111,212,0.1); background: white;
+    }
+    .input-row input::placeholder { color: var(--text-light); }
+
+    .btn-search {
+      border: none; border-radius: var(--radius-sm);
+      padding: 12px 22px; font-family: 'Poppins', sans-serif;
+      font-size: 14px; font-weight: 600; cursor: pointer; white-space: nowrap;
+      transition: transform 0.15s, box-shadow 0.15s; color: white;
+    }
+    .btn-search:hover  { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,0,0,0.2); }
+    .btn-search:active { transform: none; }
+    .btn-search:disabled { opacity: 0.6; cursor: not-allowed; transform: none; box-shadow: none; }
+    .btn-sci { background: linear-gradient(135deg,#1452a3,#3b6fd4); }
+    .btn-com { background: linear-gradient(135deg,#5b21b6,#7c3aed); }
+
+    /* ════════════════════════════
+       STATE BOXES
+    ════════════════════════════ */
+    .state-box {
+      background: white; border-radius: var(--radius);
+      border: 2px dashed #dde2ec;
+      padding: 44px 24px; text-align: center; margin-bottom: 20px;
+      animation: fadeIn 0.3s ease both;
+    }
+    @keyframes fadeIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+    .state-icon  { font-size: 38px; margin-bottom: 12px; }
+    .state-title { font-size: 17px; font-weight: 700; color: var(--text-mid); margin-bottom: 6px; }
+    .state-sub   { font-size: 13px; color: var(--text-light); line-height: 1.6; }
+
+    .loading-bar {
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), #fff176, var(--gold));
+      background-size: 200%; animation: shimmer 1.2s linear infinite;
+      border-radius: 2px; margin-bottom: 14px;
+    }
+    @keyframes shimmer { 0%{background-position:200%} 100%{background-position:-200%} }
+
+    /* ════════════════════════════
+       STUDENT INFO CARD
+    ════════════════════════════ */
+    .stu-header {
+      background: linear-gradient(135deg, #1e3a8a 0%, #3b6fd4 100%);
+      padding: 20px 24px; display: flex; align-items: center; gap: 16px;
+    }
+    .stu-avatar {
+      width: 50px; height: 50px; border-radius: 50%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; font-weight: 800; color: #1e3a8a;
+    }
+    .av-sci { background: linear-gradient(135deg,#93c5fd,#60a5fa); }
+    .av-com { background: linear-gradient(135deg,#c4b5fd,#a78bfa); }
+    .stu-name { font-size: 18px; font-weight: 700; color: white; }
+    .stu-roll { font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 2px; }
+    .stu-badge {
+      margin-left: auto; flex-shrink: 0;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 5px 12px; border-radius: 20px;
+    }
+    .badge-sci { background:rgba(147,197,253,0.2); color:#93c5fd; border:1px solid rgba(147,197,253,0.3); }
+    .badge-com { background:rgba(196,181,253,0.2); color:#c4b5fd; border:1px solid rgba(196,181,253,0.3); }
+
+    .stu-meta {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(110px,1fr));
+      gap: 1px; background: #eef0f5;
+    }
+    .meta-cell { background: white; padding: 12px 16px; text-align: center; }
+    .meta-lbl  { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-light); margin-bottom: 3px; }
+    .meta-val  { font-size: 14px; font-weight: 700; color: var(--text-dark); }
+
+    /* ════════════════════════════
+       STREAM BANNER
+    ════════════════════════════ */
+    .stream-banner {
+      display: flex; align-items: center; gap: 8px;
+      padding: 10px 20px; font-size: 13px; font-weight: 600;
+      border-bottom: 1px solid #eef0f5;
+    }
+    .sb-sci { background: var(--science-bg); color: var(--science); }
+    .sb-com { background: var(--commerce-bg); color: var(--commerce); }
+    .sb-subs { font-size: 11px; opacity: 0.7; font-weight: 400; }
+
+    /* ════════════════════════════
+       TABS
+    ════════════════════════════ */
+    .tabs-wrap {
+      display: flex; gap: 8px; flex-wrap: wrap;
+      padding: 14px 20px; background: #f8faff; border-bottom: 1px solid #eef0f5;
+    }
+    .tab-btn {
+      padding: 6px 16px; border-radius: 20px; border: 1.5px solid #dde2ec;
+      background: white; font-family: 'Poppins', sans-serif;
+      font-size: 12px; font-weight: 500; color: var(--text-light); cursor: pointer; transition: all 0.15s;
+    }
+    .tab-btn.active { background: #1e3a8a; color: white; border-color: #1e3a8a; }
+    .tab-btn:hover:not(.active) { border-color: #1e3a8a; color: #1e3a8a; }
+
+    /* ════════════════════════════
+       RESULT TABLE
+    ════════════════════════════ */
+    .result-section { display: none; }
+    .result-section.active { display: block; }
+
+    .res-table { width: 100%; border-collapse: collapse; }
+    .res-table th {
+      background: #f8faff; padding: 10px 14px; font-size: 10px;
+      text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-light);
+      font-weight: 600; text-align: left; border-bottom: 1px solid #eef0f5;
+    }
+    .res-table td {
+      padding: 13px 14px; font-size: 13px;
+      border-bottom: 1px solid #eef0f5; color: var(--text-dark);
+    }
+    .res-table tr:last-child td { border-bottom: none; }
+    .res-table tbody tr:hover td { background: #f8faff; }
+
+    .bar-wrap { display: flex; align-items: center; gap: 8px; }
+    .bar-bg   { flex: 1; height: 6px; background: #eef0f5; border-radius: 3px; overflow: hidden; min-width: 50px; }
+    .bar-fill { height: 100%; border-radius: 3px; transition: width 0.8s cubic-bezier(.4,0,.2,1); }
+    .bh { background: linear-gradient(90deg,#1e8a5e,#34c88a); }
+    .bm { background: linear-gradient(90deg,#d97706,#f59e0b); }
+    .bl { background: linear-gradient(90deg,#b83232,#ef4444); }
+
+    .grade-dot {
+      width: 30px; height: 30px; border-radius: 50%; font-size: 11px; font-weight: 700;
+      display: inline-flex; align-items: center; justify-content: center;
+    }
+    .ga { background:#e8f7f0; color:#1e8a5e; }
+    .gb { background:#e8f0fb; color:#2563eb; }
+    .gc { background:#fff7e6; color:#d97706; }
+    .gd { background:#fff0f0; color:#b83232; }
+
+    .st-badge { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 12px; }
+    .st-pass  { background: var(--success-bg); color: var(--success); }
+    .st-fail  { background: var(--fail-bg);    color: var(--fail); }
+
+    /* Summary strip */
+    .summary-strip {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(90px,1fr));
+      gap: 1px; background: #eef0f5; border-top: 1px solid #eef0f5;
+    }
+    .sum-cell { background: #f8faff; text-align: center; padding: 12px 8px; }
+    .sum-num  { font-size: 20px; font-weight: 800; color: #1e3a8a; }
+    .sum-lbl  { font-size: 10px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-light); margin-top: 2px; }
+
+    /* ════════════════════════════
+       CHART
+    ════════════════════════════ */
+    .chart-card {
+      background: white; border-radius: var(--radius);
+      box-shadow: var(--shadow-md); padding: 20px; margin-bottom: 20px;
+      animation: fadeIn 0.4s ease 0.1s both;
+    }
+    .chart-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+    .chart-title { font-size: 15px; font-weight: 700; color: var(--text-dark); }
+    .c-pill { font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; }
+    .cp-sci { background: var(--science-bg); color: var(--science); }
+    .cp-com { background: var(--commerce-bg); color: var(--commerce); }
+    .chart-wrap { position: relative; height: 280px; }
+    .chart-legend { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+    .leg-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text-light); }
+    .leg-dot  { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+
+    /* ════════════════════════════
+       FOOTER
+    ════════════════════════════ */
+    .footer {
+      text-align: center; padding: 20px; font-size: 11px;
+      color: var(--text-light); background: white;
+      border-top: 1px solid #eef0f5; letter-spacing: 0.03em;
+    }
+
+    @media (max-width: 560px) {
+      .hero { padding: 28px 16px 40px; }
+      .logo-ring { width: 90px; height: 90px; }
+      .logo-ring img, .logo-fallback { width: 82px; height: 82px; }
+      .hero-name { font-size: 16px; }
+      .course-grid { gap: 10px; }
+      .course-subs { display: none; }
+      .input-row { flex-direction: column; }
+      .btn-search { width: 100%; }
+      .stu-badge  { display: none; }
+      .res-table th:nth-child(3),
+      .res-table td:nth-child(3) { display: none; }
+    }
+  </style>
 </head>
 <body>
 
-<div class="page">
-  <!-- BRAND -->
-  <div class="brand">
-    <div class="b-pill">🏥 Join online medical shop Today</div>
-    <div class="b-logo">Online Medical<span> Shop</span></div>
-    <div class="b-tag">Create your account in 60 seconds and start ordering medicines online.</div>
-    <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-text"><strong>Fill your details</strong>Name, email, phone &amp; password</div>
-      </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-text"><strong>Verify your account</strong>Quick email confirmation</div>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-text"><strong>Start shopping</strong>Browse 500+ certified products</div>
+<!-- ══ HERO ══ -->
+<header class="hero">
+  <!-- Replace the src below with your actual college logo image path -->
+  <div class="logo-wrap">
+    <div class="logo-ring">
+      <img src="https://raw.githubusercontent.com/Siddaram76/student_result_website/main/logo.jpg" alt="College Logo"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"/>
+      <div class="logo-fallback" style="display:none">
+        M<span>MCPUC</span>
       </div>
     </div>
   </div>
 
-  <!-- FORM -->
-  <div class="form-side">
-    <div class="card">
-      <div class="eyebrow">New Account</div>
-      <h1 class="card-title">Create your<br />Online medical shop account</h1>
-      <p class="card-sub">Join thousands getting healthcare delivered.</p>
+  <p class="hero-org">Kalyana Karnataka Education Society</p>
+  <h1 class="hero-name">Millennium Composite Pre-University College</h1>
+  <p class="hero-location">📍 Kalaburagi, Karnataka</p>
 
-      <div id="msg-box"></div>
+  <button class="hero-banner-btn">🏆 Unit Test &amp; Monthly Test Results</button>
+</header>
 
-      <div class="row">
-        <div class="field">
-          <label>First Name</label>
-          <input type="text" id="firstName" placeholder="John" />
+<!-- ══ PAGE BODY ══ -->
+<div class="page-body">
+
+  <!-- Notifications -->
+  <div class="notif-card">
+    <p class="notif-title">🔔 Latest Notifications:</p>
+    <ul class="notif-list">
+      <li>Unit Test Results are now available.</li>
+      <li>Monthly Test Results are available soon — Stay Tuned….!!</li>
+    </ul>
+  </div>
+
+  <!-- Section heading -->
+  <p class="section-heading">📋 Student Results</p>
+
+  <!-- Search card -->
+  <div class="card">
+    <div class="card-body">
+
+      <!-- Step indicator -->
+      <div class="steps">
+        <div class="step active" id="step1el">
+          <div class="step-num" id="s1num">1</div>
+          Select Course
         </div>
-        <div class="field">
-          <label>Last Name</label>
-          <input type="text" id="lastName" placeholder="Doe" />
-        </div>
-      </div>
-
-      <div class="field">
-        <label>Email Address</label>
-        <input type="email" id="email" placeholder="john@example.com" />
-      </div>
-
-      <div class="field">
-        <label>Phone Number</label>
-        <input type="tel" id="phone" placeholder="+91 98765 43210" />
-      </div>
-
-      <div class="row">
-        <div class="field">
-          <label>Password</label>
-          <input type="password" id="password" placeholder="Min. 6 chars" oninput="checkStrength()" />
-          <div class="strength-bar"><div class="strength-fill" id="strength-fill"></div></div>
-        </div>
-        <div class="field">
-          <label>Confirm Password</label>
-          <input type="password" id="confirm" placeholder="Repeat password" />
+        <div class="step-line"><div class="step-line-fill" id="sline"></div></div>
+        <div class="step" id="step2el">
+          <div class="step-num" id="s2num">2</div>
+          Enter Roll No.
         </div>
       </div>
 
-      <button class="btn" id="reg-btn" onclick="register()">Create Account →</button>
+      <!-- Step 1: Course -->
+      <div id="courseStep">
+        <p class="step-label-text">Which course are you in?</p>
+        <div class="course-grid">
+          <button class="course-btn science" onclick="selectCourse('science')">
+            <span class="check-mark">✓</span>
+            <span class="course-icon">🔬</span>
+            <span class="course-name">Science</span>
+            <span class="course-subs">Physics · Chemistry<br>Maths · Biology</span>
+          </button>
+          <button class="course-btn commerce" onclick="selectCourse('commerce')">
+            <span class="check-mark">✓</span>
+            <span class="course-icon">📊</span>
+            <span class="course-name">Commerce</span>
+            <span class="course-subs">Accountancy · Economics<br>Business Studies · CS</span>
+          </button>
+        </div>
+      </div>
 
-      <p class="terms">By registering you agree to our <a href="#">Terms of Service</a> &amp; <a href="#">Privacy Policy</a></p>
-      <div class="switch-link">Already have an account? <a href="login.html">Sign in</a></div>
+      <!-- Step 2: Roll number -->
+      <div id="rollStep" class="roll-step">
+        <div id="selectedTag"></div>
+        <p class="step-label-text">Enter your roll number</p>
+        <div class="input-row">
+          <input type="text" id="rollInput" placeholder="e.g. 2024001"
+                 onkeydown="if(event.key==='Enter') searchStudent()"/>
+          <button class="btn-search btn-sci" id="searchBtn" onclick="searchStudent()">Search</button>
+        </div>
+      </div>
+
     </div>
   </div>
-</div>
+
+  <!-- Results -->
+  <div id="studentInfo"></div>
+  <div id="resultsContainer"></div>
+
+  <div id="chartSection" style="display:none" class="chart-card">
+    <div class="chart-top">
+      <span class="chart-title">All Tests — Performance Overview</span>
+      <span class="c-pill" id="chartPill"></span>
+    </div>
+    <div class="chart-wrap"><canvas id="overallChart"></canvas></div>
+    <div class="chart-legend" id="chartLegend"></div>
+  </div>
+
+</div><!-- /page-body -->
+
+<footer class="footer">
+  © 2026 Developed and Maintained by Siddaram Diggikar, Dept. of Computer science &nbsp;·&nbsp; 
+</footer>
 
 <script>
-  // ── CONFIG ─────────────────────────────────────────────────────────────────
-  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwFUlZPz6qlj1zGRkTbn1I6-XAtqYhHe37xkbAa3wq71SaAdmQoQKhxSA129J6UfDoRGw/exec";
- 
+  /* ═══ CONFIG ═══════════════════════════════════════════════════════ */
+  const SHEET_URLS = {
+    science:  "https://script.google.com/macros/s/AKfycbwK021j36FWMUfZ2HIpqRbheFQAl_a_LBT3vdh7PmSLBWd6ik-3H815zwCADjDca64AVw/exec",
+    commerce: "https://script.google.com/macros/s/AKfycbzXPcsURDM175tObxk3NK0w76UGYfKNX-0WsSzw3X-QQ_ybrCaFmNCUdBdXm8_1_Da1Hw/exec",
+    // ↑ Replace commerce value with your Sheet2 Apps Script URL
+  };
 
- 
-  // Redirect if already logged in
-  if (localStorage.getItem("medirx_user")) window.location.href = "home.html";
+  const SUBJECTS = {
+    science:  ["Kannada","English","Physics","Chemistry","Maths","Biology/CS"],
+    commerce: ["Kannada","English","Economics","Business Studies","Accountancy","Computer Science"],
+  };
 
-  // ── PASSWORD STRENGTH ──────────────────────────────────────────────────────
-  function checkStrength() {
-    const pw = document.getElementById("password").value;
-    const fill = document.getElementById("strength-fill");
-    let score = 0;
-    if (pw.length >= 6) score++;
-    if (pw.length >= 10) score++;
-    if (/[A-Z]/.test(pw) && /[0-9]/.test(pw)) score++;
-    if (/[^A-Za-z0-9]/.test(pw)) score++;
-    const colors = ["#e74c3c", "#e67e22", "#f1c40f", "#2ecc71"];
-    const widths = ["25%", "50%", "75%", "100%"];
-    fill.style.width = pw.length ? widths[score - 1] || "15%" : "0";
-    fill.style.background = pw.length ? colors[score - 1] || "#e74c3c" : "";
+  const S_LABEL = {
+    "Kannada":"Kannada","English":"English","Physics":"Physics","Chemistry":"Chemistry",
+    "Maths":"Mathematics","Biology/CS":"Biology/CS","Economics":"Economics",
+    "Business Studies":"Business Studies","Accountancy":"Accountancy","Computer Science":"Computer Science",
+  };
+
+  const PALETTE = [
+    {bg:"rgba(30,138,94,0.75)",  border:"#1e8a5e"},
+    {bg:"rgba(37,99,235,0.75)",  border:"#2563eb"},
+    {bg:"rgba(201,168,76,0.75)", border:"#c9a84c"},
+    {bg:"rgba(184,50,50,0.75)",  border:"#b83232"},
+    {bg:"rgba(124,58,237,0.75)", border:"#7c3aed"},
+    {bg:"rgba(217,119,6,0.75)",  border:"#d97706"},
+  ];
+
+  const MAX = 20, PASS = 0.35;
+  let course = null, chartInst = null;
+
+  /* helpers */
+  function ini(n){ return (n||'').split(' ').map(w=>w[0]).join('').substring(0,2).toUpperCase(); }
+  function grade(p){
+    if(p>=90)return{l:'A+',c:'ga'}; if(p>=75)return{l:'A',c:'ga'};
+    if(p>=60)return{l:'B',c:'gb'}; if(p>=45)return{l:'C',c:'gc'};
+    return{l:'D',c:'gd'};
+  }
+  function bc(p){ return p>=60?'bh':p>=35?'bm':'bl'; }
+  function showTab(i){
+    document.querySelectorAll('.tab-btn').forEach((b,j)=>b.classList.toggle('active',j===i));
+    document.querySelectorAll('.result-section').forEach((s,j)=>s.classList.toggle('active',j===i));
   }
 
-  // ── HELPERS ────────────────────────────────────────────────────────────────
-  function showMsg(text, type = "error") {
-    document.getElementById("msg-box").innerHTML =
-      `<div class="msg ${type}">${type==="error"?"⚠️":"✅"} ${text}</div>`;
+  /* ── Step 1: select course ── */
+  function selectCourse(c){
+    course = c;
+    const isCom = c==='commerce';
+    document.querySelectorAll('.course-btn').forEach(b=>b.classList.remove('selected'));
+    document.querySelector(`.course-btn.${c}`).classList.add('selected');
+
+    setTimeout(()=>{
+      /* step indicator */
+      const s1=document.getElementById('step1el');
+      s1.classList.remove('active'); s1.classList.add('done');
+      document.getElementById('s1num').textContent='✓';
+      document.getElementById('sline').classList.add('done');
+      document.getElementById('step2el').classList.add('active');
+
+      /* swap steps */
+      document.getElementById('courseStep').style.display='none';
+      document.getElementById('rollStep').classList.add('visible');
+
+      /* tag */
+      document.getElementById('selectedTag').innerHTML=isCom
+        ?`<span class="selected-tag tag-com" onclick="goBack()">📊 Commerce &nbsp;·&nbsp; <span style="font-weight:400;opacity:.7">Change ↩</span></span>`
+        :`<span class="selected-tag tag-sci" onclick="goBack()">🔬 Science &nbsp;·&nbsp; <span style="font-weight:400;opacity:.7">Change ↩</span></span>`;
+
+      /* button colour */
+      const btn=document.getElementById('searchBtn');
+      btn.className=`btn-search ${isCom?'btn-com':'btn-sci'}`;
+      document.getElementById('rollInput').focus();
+    },180);
   }
 
-  function setLoading(on) {
-    const btn = document.getElementById("reg-btn");
-    btn.disabled = on;
-    btn.textContent = on ? "Creating Account…" : "Create Account →";
-    if (on) btn.classList.add("loading"); else btn.classList.remove("loading");
+  /* go back */
+  function goBack(){
+    course=null;
+    document.getElementById('rollStep').classList.remove('visible');
+    document.getElementById('courseStep').style.display='';
+    document.querySelectorAll('.course-btn').forEach(b=>b.classList.remove('selected'));
+    const s1=document.getElementById('step1el');
+    s1.classList.remove('done'); s1.classList.add('active');
+    document.getElementById('s1num').textContent='1';
+    document.getElementById('sline').classList.remove('done');
+    document.getElementById('step2el').classList.remove('active');
+    document.getElementById('rollInput').value='';
+    document.getElementById('studentInfo').innerHTML='';
+    document.getElementById('resultsContainer').innerHTML='';
+    document.getElementById('chartSection').style.display='none';
   }
 
-  function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+  /* ── Step 2: search ── */
+  async function searchStudent(){
+    if(!course) return;
+    const roll=document.getElementById('rollInput').value.trim();
+    const btn=document.getElementById('searchBtn');
+    const sInfo=document.getElementById('studentInfo');
+    const rCont=document.getElementById('resultsContainer');
+    const chartSec=document.getElementById('chartSection');
+    const isCom=course==='commerce';
 
-  // ── REGISTER ───────────────────────────────────────────────────────────────
-  async function register() {
-    const firstName = document.getElementById("firstName").value.trim();
-    const lastName  = document.getElementById("lastName").value.trim();
-    const email     = document.getElementById("email").value.trim();
-    const phone     = document.getElementById("phone").value.trim();
-    const password  = document.getElementById("password").value;
-    const confirm   = document.getElementById("confirm").value;
+    if(!roll){
+      sInfo.innerHTML=`<div class="state-box"><div class="state-icon">🔍</div>
+        <p class="state-title">Enter a Roll Number</p>
+        <p class="state-sub">Type your roll number and press Search</p></div>`;
+      rCont.innerHTML=''; chartSec.style.display='none'; return;
+    }
 
-    if (!firstName || !lastName || !email || !phone || !password)
-      return showMsg("Please fill in all fields.");
-    if (!/\S+@\S+\.\S+/.test(email))
-      return showMsg("Please enter a valid email address.");
-    if (password !== confirm)
-      return showMsg("Passwords do not match.");
-    if (password.length < 6)
-      return showMsg("Password must be at least 6 characters.");
+    btn.disabled=true; btn.textContent='Searching…';
+    sInfo.innerHTML=`<div class="state-box"><div class="loading-bar"></div>
+      <p class="state-title">Fetching from ${isCom?'Commerce':'Science'} records…</p>
+      <p class="state-sub">Connecting ...........!</p></div>`;
+    rCont.innerHTML=''; chartSec.style.display='none';
 
-    setLoading(true);
+    try{
+      const res=await fetch(`${SHEET_URLS[course]}?roll=${encodeURIComponent(roll)}`);
+      const data=await res.json();
+      btn.disabled=false; btn.textContent='Search';
 
- 
-
-    try {
-      const res = await fetch(SCRIPT_URL, {
-        method: "POST",
-        headers: { "Content-Type": "text/plain" },
-        body: JSON.stringify({ action: "register", firstName, lastName, email, phone, password })
-      });
-      const data = await res.json();
-      if (data.success) {
-        showMsg("Account created! Redirecting to login…", "success");
-        setTimeout(() => window.location.href = "login.html", 1800);
-      } else {
-        showMsg(data.error || "Registration failed. Try again.");
-        setLoading(false);
+      if(!data||data.length===0){
+        sInfo.innerHTML=`<div class="state-box"><div class="state-icon">⚠️</div>
+          <p class="state-title">No Result Found</p>
+          <p class="state-sub">Roll number <strong>${roll}</strong> was not found in
+          <strong>${isCom?'Commerce':'Science'}</strong> records.<br>
+          <span style="color:var(--${isCom?'commerce':'science'});cursor:pointer;text-decoration:underline" onclick="goBack()">Switch course ↩</span></p></div>`;
+        return;
       }
-    } catch {
-      showMsg("Connection failed. Check your Script URL.");
-      setLoading(false);
+
+      const student=data[0];
+      const subs=SUBJECTS[course];
+      const avCls=isCom?'av-com':'av-sci';
+      const bdgCls=isCom?'badge-com':'badge-sci';
+
+      /* student card */
+      sInfo.innerHTML=`
+        <div class="card" style="margin-bottom:20px;animation:fadeIn .4s ease both">
+          <div class="stu-header">
+            <div class="stu-avatar ${avCls}">${ini(student.Name)}</div>
+            <div style="flex:1">
+              <div class="stu-name">${student.Name}</div>
+              <div class="stu-roll">Roll No: ${student.RollNo} · ${student.Course||''}</div>
+            </div>
+            <span class="stu-badge ${bdgCls}">${isCom?'📊 Commerce':'🔬 Science'}</span>
+          </div>
+          <div class="stu-meta">
+            <div class="meta-cell"><div class="meta-lbl">Roll No</div><div class="meta-val">${student.RollNo}</div></div>
+            <div class="meta-cell"><div class="meta-lbl">Course</div><div class="meta-val">${student.Course||'—'}</div></div>
+            <div class="meta-cell"><div class="meta-lbl">Stream</div>
+              <div class="meta-val" style="color:var(--${isCom?'commerce':'science'})">${isCom?'Commerce':'Science'}</div>
+            </div>
+            <div class="meta-cell"><div class="meta-lbl">Tests</div><div class="meta-val">${data.length}</div></div>
+          </div>
+        </div>`;
+
+      /* tabbed result tables */
+      const banCls=isCom?'sb-com':'sb-sci';
+      const subList=subs.map(s=>S_LABEL[s]||s).join(' · ');
+      let tabBtns='', tabPanels='';
+
+      data.forEach((test,idx)=>{
+        const marks=subs.map(s=>Number(test[s])||0);
+        const total=marks.reduce((a,b)=>a+b,0);
+        const maxTot=subs.length*MAX;
+        const pct=Math.round(total/maxTot*100);
+        const passed=marks.every(m=>m>=MAX*PASS);
+        const g=grade(pct);
+
+        tabBtns+=`<button class="tab-btn${idx===0?' active':''}" onclick="showTab(${idx})">${test.Test||'Test '+(idx+1)}</button>`;
+
+        const rows=subs.map((sub,si)=>{
+          const m=marks[si], p=Math.round(m/MAX*100), gr=grade(p), pa=m>=MAX*PASS;
+          return `<tr>
+            <td style="font-weight:600">${S_LABEL[sub]||sub}</td>
+            <td>${m} / ${MAX}</td>
+            <td>
+              <div class="bar-wrap">
+                <div class="bar-bg"><div class="bar-fill ${bc(p)}" style="width:${p}%"></div></div>
+                <span style="font-size:11px;color:var(--text-light);min-width:34px">${p}%</span>
+              </div>
+            </td>
+            <td><div class="grade-dot ${gr.c}">${gr.l}</div></td>
+            <td><span class="st-badge ${pa?'st-pass':'st-fail'}">${pa?'Pass':'Fail'}</span></td>
+          </tr>`;
+        }).join('');
+
+        tabPanels+=`
+          <div class="result-section${idx===0?' active':''}">
+            <table class="res-table">
+              <thead><tr><th>Subject</th><th>Marks</th><th>Performance</th><th>Grade</th><th>Status</th></tr></thead>
+              <tbody>${rows}</tbody>
+            </table>
+            <div class="summary-strip">
+              <div class="sum-cell"><div class="sum-num">${total}/${maxTot}</div><div class="sum-lbl">Total</div></div>
+              <div class="sum-cell"><div class="sum-num">${pct}%</div><div class="sum-lbl">Percentage</div></div>
+              <div class="sum-cell"><div class="sum-num">${g.l}</div><div class="sum-lbl">Grade</div></div>
+              <div class="sum-cell"><div class="sum-num">${marks.filter(m=>m>=MAX*PASS).length}/${subs.length}</div><div class="sum-lbl">Passed</div></div>
+              <div class="sum-cell">
+                <div class="sum-num" style="font-size:16px;color:${passed?'var(--success)':'var(--fail)'}">${passed?'✓ Pass':'✗ Fail'}</div>
+                <div class="sum-lbl">Result</div>
+              </div>
+            </div>
+          </div>`;
+      });
+
+      rCont.innerHTML=`
+        <div class="card" style="margin-bottom:20px;animation:fadeIn .4s ease .05s both">
+          <div style="padding:16px 20px;border-bottom:1px solid #eef0f5;display:flex;align-items:center;justify-content:space-between">
+            <span style="font-size:16px;font-weight:700">Subject-wise Results</span>
+          </div>
+          <div class="stream-banner ${banCls}">
+            <span>${isCom?'📊':'🔬'}</span>
+            <span>${isCom?'Commerce':'Science'} Stream</span>
+            <span class="sb-subs">— ${subList}</span>
+          </div>
+          <div class="tabs-wrap">${tabBtns}</div>
+          ${tabPanels}
+        </div>`;
+
+      /* chart */
+      chartSec.style.display='block';
+      const pill=document.getElementById('chartPill');
+      pill.textContent=`${isCom?'Commerce':'Science'} · ${data.length} Test${data.length>1?'s':''}`;
+      pill.className=`c-pill ${isCom?'cp-com':'cp-sci'}`;
+
+      const cLabels=subs.map(s=>S_LABEL[s]||s);
+      const datasets=data.map((test,i)=>({
+        label:test.Test||`Test ${i+1}`,
+        data:subs.map(s=>Number(test[s])||0),
+        backgroundColor:PALETTE[i%PALETTE.length].bg,
+        borderColor:PALETTE[i%PALETTE.length].border,
+        borderWidth:1.5, borderRadius:5, borderSkipped:false,
+      }));
+
+      if(chartInst) chartInst.destroy();
+      chartInst=new Chart(document.getElementById('overallChart').getContext('2d'),{
+        type:'bar',
+        data:{labels:cLabels,datasets},
+        options:{
+          responsive:true, maintainAspectRatio:false,
+          plugins:{
+            legend:{display:false},
+            tooltip:{
+              backgroundColor:'#1e3a8a', titleColor:'#fff',
+              bodyColor:'rgba(255,255,255,0.8)', padding:10, cornerRadius:8,
+              callbacks:{label:c=>`${c.dataset.label}: ${c.parsed.y}/${MAX} (${Math.round(c.parsed.y/MAX*100)}%)`}
+            }
+          },
+          scales:{
+            x:{grid:{display:false},ticks:{font:{family:'Poppins',size:11},color:'#7a8aaa'}},
+            y:{beginAtZero:true,max:MAX,
+              ticks:{font:{family:'Poppins',size:11},color:'#7a8aaa',stepSize:20},
+              grid:{color:'rgba(0,0,0,0.04)'}}
+          }
+        }
+      });
+
+      document.getElementById('chartLegend').innerHTML=data.map((t,i)=>
+        `<div class="leg-item">
+          <div class="leg-dot" style="background:${PALETTE[i%PALETTE.length].border}"></div>
+          ${t.Test||'Test '+(i+1)}
+        </div>`).join('');
+
+    }catch(err){
+      btn.disabled=false; btn.textContent='Search';
+      sInfo.innerHTML=`<div class="state-box"><div class="state-icon">❌</div>
+        <p class="state-title">Connection Error</p>
+        <p class="state-sub">Could not reach Google Sheets. Check your internet and try again.<br>
+        <small style="color:var(--text-light);margin-top:6px;display:block">${err.message}</small></p></div>`;
     }
   }
-
-  // Enter key
-  document.addEventListener("keydown", e => { if (e.key === "Enter") register(); });
 </script>
 </body>
 </html>
